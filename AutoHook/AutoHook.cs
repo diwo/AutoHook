@@ -87,19 +87,19 @@ public class AutoHook : IDalamudPlugin
                 OnOpenConfigUi();
                 break;
             case CmdAhOn:
-                Service.Chat.Print(UIStrings.AutoHook_Enabled);
+                Service.PrintChat(UIStrings.AutoHook_Enabled);
                 Service.Configuration.PluginEnabled = true;
                 break;
             case CmdAhOff:
-                Service.Chat.Print(UIStrings.AutoHook_Disabled);
+                Service.PrintChat(UIStrings.AutoHook_Disabled);
                 Service.Configuration.PluginEnabled = false;
                 break;
             case CmdAhtg when Service.Configuration.PluginEnabled:
-                Service.Chat.Print(UIStrings.AutoHook_Disabled);
+                Service.PrintChat(UIStrings.AutoHook_Disabled);
                 Service.Configuration.PluginEnabled = false;
                 break;
             case CmdAhtg:
-                Service.Chat.Print(UIStrings.AutoHook_Enabled);
+                Service.PrintChat(UIStrings.AutoHook_Enabled);
                 Service.Configuration.PluginEnabled = true;
                 break;
             case CmdAhPreset:
@@ -113,12 +113,12 @@ public class AutoHook : IDalamudPlugin
         var preset = Service.Configuration.HookPresets.CustomPresets.FirstOrDefault(x => x.PresetName == presetName);
         if (preset == null)
         {
-            Service.Chat.Print(UIStrings.Preset_not_found);
+            Service.PrintChat(UIStrings.Preset_not_found);
             return;
         }
          
         Service.Configuration.HookPresets.SelectedPreset = preset;
-        Service.Chat.Print(@$"{UIStrings.Preset_set_to_} {preset.PresetName}");
+        Service.PrintChat(@$"{UIStrings.Preset_set_to_} {preset.PresetName}");
         Service.Save();
     }
 
